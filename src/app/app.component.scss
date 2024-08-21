@@ -1,0 +1,17 @@
+div {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+
+  & > ul {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

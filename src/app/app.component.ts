@@ -69,10 +69,16 @@ export class AppComponent {
       | typeof this.formGroup.value
       | ValueOf<typeof this.formGroup.value> = this.formGroup.value,
   ): number {
-    return Object.values(parent)
-      .map((value) =>
-        typeof value === 'object' ? this.getSelectedAmount(value) : value,
-      )
-      .filter(Boolean).length;
+    let amount = 0;
+
+    for (const value of Object.values(parent)) {
+      if (typeof value === 'object') {
+        amount += this.getSelectedAmount(value);
+      } else if (value) {
+        amount++;
+      }
+    }
+
+    return amount;
   }
 }

@@ -19,7 +19,6 @@ import { MatIcon } from '@angular/material/icon';
     MatFormField,
     ReactiveFormsModule,
     MatIcon,
-    MatPrefix,
     MatSuffix,
   ],
   templateUrl: './app.component.html',

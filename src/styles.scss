@@ -67,3 +67,21 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-mdc-form-field-has-icon-suffix {
+  &.mat-focused mat-icon {
+    color: var(--mat-select-focused-arrow-color);
+  }
+
+  mat-icon {
+    color: var(--mat-select-enabled-arrow-color);
+    fill: currentColor;
+  }
+
+  .mat-mdc-select {
+    // It's not possible with angular material to hide to default arrow icon, so we override it
+    .mat-mdc-select-arrow-wrapper {
+      display: none;
+    }
+  }
+}

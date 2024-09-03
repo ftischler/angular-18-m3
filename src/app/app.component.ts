@@ -8,6 +8,7 @@ import {
 import { MatOption, MatSelect } from '@angular/material/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { MatIcon } from '@angular/material/icon';
     ReactiveFormsModule,
     MatIcon,
     MatSuffix,
+    MatInput,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

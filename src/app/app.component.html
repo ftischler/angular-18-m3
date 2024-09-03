@@ -1,52 +1,7 @@
-<div>
-  <mat-chip [matMenuTriggerFor]="menu"
-    >Source [{{ amountSelected() }}]</mat-chip
-  >
-  <button mat-stroked-button [matMenuTriggerFor]="menu">
-    Source {{ amountSelected()
-    }}<mat-icon iconPositionEnd matButtonIcon>keyboard_arrow_down</mat-icon>
-  </button>
-  <mat-menu #menu>
-    <form [formGroup]="formGroup">
-      <ul>
-        <li mat-menu-item role="menuitemcheckbox">
-          <mat-checkbox
-            formControlName="element1"
-            (click)="$event.stopPropagation()"
-            >Element 1</mat-checkbox
-          >
-        </li>
-        <li mat-menu-item role="menuitemcheckbox">
-          <mat-checkbox
-            formControlName="element2"
-            (click)="$event.stopPropagation()"
-            >Element 2</mat-checkbox
-          >
-        </li>
-        <li mat-menu-item role="menuitemcheckbox">
-          <mat-checkbox
-            formControlName="element3"
-            (click)="$event.stopPropagation()"
-            >Element 3</mat-checkbox
-          >
-        </li>
-        <ul [formGroup]="formGroup.controls.element4">
-          <li mat-menu-item role="menuitemcheckbox">
-            <mat-checkbox
-              formControlName="subElement1"
-              (click)="$event.stopPropagation()"
-              >Subelement 1</mat-checkbox
-            >
-          </li>
-          <li mat-menu-item role="menuitemcheckbox">
-            <mat-checkbox
-              formControlName="subElement2"
-              (click)="$event.stopPropagation()"
-              >Subelement 2</mat-checkbox
-            >
-          </li>
-        </ul>
-      </ul>
-    </form>
-  </mat-menu>
+<mat-form-field>
+  <input matInput [(ngModel)]="count" type="number" />
+</mat-form-field>
+<div><mat-icon>call</mat-icon></div>
+<div class="content">
+  {{ loremIpsum() }}
 </div>

@@ -1,84 +1,25 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {
-  MatCard,
-  MatCardContent,
-  MatCardHeader,
-  MatCardTitle,
-} from '@angular/material/card';
+import { Component, computed, signal } from '@angular/core';
+import { loremIpsum } from 'lorem-ipsum';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-import { NavigationComponent } from './navigation/navigation.component';
-import { KeyValuePipe, NgTemplateOutlet } from '@angular/common';
-import { MatChip } from '@angular/material/chips';
-import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs/operators';
-import { ValueOf } from 'type-fest';
+import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    MatFormField,
-    MatInput,
-    MatButton,
-    NavigationComponent,
-    MatChip,
-    MatMenu,
-    MatCheckbox,
-    MatMenuItem,
-    MatMenuTrigger,
-    ReactiveFormsModule,
-    KeyValuePipe,
-    NgTemplateOutlet,
-    MatIcon,
-  ],
+  imports: [MatFormField, MatInput, FormsModule, MatIcon],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private formBuilder = inject(FormBuilder);
-
-  formGroup = this.formBuilder.nonNullable.group({
-    element1: false,
-    element2: false,
-    element3: false,
-    element4: this.formBuilder.group({
-      subElement1: false,
-      subElement2: false,
-    }),
+  #defaultCount = 2000;
+  #maxCount = 4000;
+  count = signal(this.#defaultCount);
+  loremIpsum = computed(() => {
+    const count = this.count();
+    return loremIpsum({
+      count: count <= this.#maxCount ? count : this.#defaultCount,
+    });
   });
-
-  amountSelected = toSignal(
-    this.formGroup.valueChanges.pipe(map(() => this.getSelectedAmount())),
-    { initialValue: this.getSelectedAmount() },
-  );
-
-  getSelectedAmount(
-    parent:
-      | typeof this.formGroup.value
-      | ValueOf<typeof this.formGroup.value> = this.formGroup.value,
-  ): number {
-    let amount = 0;
-
-    for (const value of Object.values(parent)) {
-      if (typeof value === 'object') {
-        amount += this.getSelectedAmount(value);
-      } else if (value) {
-        amount++;
-      }
-    }
-
-    return amount;
-  }
 }

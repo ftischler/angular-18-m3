@@ -1,17 +1,7 @@
-div {
-  width: 100%;
-  height: 100%;
+:host {
   display: grid;
+  height: 100%;
   place-items: center;
 }
 
-ul {
-  list-style-type: none;
-  margin-left: 0;
-  padding: 0;
-
-  & > ul {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
+// Styles for the select with custom trigger icons are in styles.scss so we have no need for ng-deep
